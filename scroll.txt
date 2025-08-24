@@ -1,0 +1,29 @@
+ const handleHizmetlerClick = () => {
+    setDropdownOpen(false);
+    setSidebarOpen(false);
+
+    // Check if we're on homepage
+    const isHomepage = window.location.pathname === '/';
+
+    if (isHomepage) {
+      // On homepage - scroll to category cards
+      setTimeout(() => {
+        const element = document.getElementById('category-cards');
+        if (element) {
+          element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        } else {
+          // Fallback scroll
+          window.scrollTo({
+            top: 600,
+            behavior: 'smooth'
+          });
+        }
+      }, 100);
+    } else {
+      // Not on homepage - go to homepage and scroll
+      router.push('/?scroll=category');
+    }
+  };
