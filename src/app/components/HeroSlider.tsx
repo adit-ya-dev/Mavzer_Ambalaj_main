@@ -42,7 +42,7 @@ export default function HeroSlider() {
               className=" w-full h-[150px] xs:h-[180px] sm:h-[220px] md:h-[300px] lg:h-[400px] xl:h-[450px] flex-shrink-0"
             >
               <div className="p-0  h-full w-full">
-                <Card className="p-12 h-full w-full border-0 rounded-none overflow-hidden">
+                <Card className="p-0 h-full w-full border-0 rounded-none overflow-hidden">
                   <CardContent className="p-0 h-full w-full relative">
                     <Image
                       src={`/slider${index + 1}.png`}
