@@ -17,7 +17,7 @@ export default function IletisimPage() {
           
           {/* Subtitle */}
           <p className="text-lg md:text-xl text-blue-100 font-light max-w-xl mx-auto">
-            Sorularınız için bize ulaşın
+            Sorunlarınız için bize ulaşın
           </p>
         </div>
         
