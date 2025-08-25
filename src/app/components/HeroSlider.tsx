@@ -22,10 +22,10 @@ export default function HeroSlider() {
   }, [])
  
   return (
-    <div className="relative w-full h-[150px] xs:h-[180px] sm:h-[220px] md:h-[300px] lg:h-[400px] xl:h-[450px] mt-[-25px]">
+    <div className="relative w-full h-[150px] xs:h-[180px] sm:h-[220px] md:h-[300px] lg:h-[400px] xl:h-[450px] mt-[-68px]">
       <Carousel
         opts={{
-          align: "start",
+          align: "center",
         }}
         className="w-full h-full"
       >
@@ -39,17 +39,17 @@ export default function HeroSlider() {
           {Array.from({ length: totalSlides }).map((_, index) => (
             <CarouselItem
               key={index}
-              className="w-full h-[150px] xs:h-[180px] sm:h-[220px] md:h-[300px] lg:h-[400px] xl:h-[450px] flex-shrink-0"
+              className=" w-full h-[150px] xs:h-[180px] sm:h-[220px] md:h-[300px] lg:h-[400px] xl:h-[450px] flex-shrink-0"
             >
-              <div className="p-0 h-full w-full">
-                <Card className="h-full w-full border-0 rounded-none overflow-hidden">
+              <div className="p-0  h-full w-full">
+                <Card className="p-12 h-full w-full border-0 rounded-none overflow-hidden">
                   <CardContent className="p-0 h-full w-full relative">
                     <Image
                       src={`/slider${index + 1}.png`}
                       alt={`Slide ${index + 1}`}
                       fill
                       priority={index === 0}
-                      className="object-cover object-center"
+                      className="object-contain object-center"
                       sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 100vw"
                     />
                   </CardContent>

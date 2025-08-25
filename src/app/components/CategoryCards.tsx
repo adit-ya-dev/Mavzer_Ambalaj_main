@@ -186,7 +186,7 @@ const CategoryCards: React.FC<CategoryCardsProps> = ({
     <>
       <div 
   id="category-cards" 
-  className="category-cards bg-white -mt-4 sm:-mt-12 md:-mt-36 pt-1 md:pt-12 lg:pt-4 relative z-10"  
+  className="category-cards bg-white -mt-4 sm:-mt-12 md:-mt-8 pt-1 md:pt-12 lg:pt-4 relative z-10"  
   data-section="category-cards"
 >
 
