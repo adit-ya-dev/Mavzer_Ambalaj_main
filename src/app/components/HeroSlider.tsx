@@ -49,7 +49,7 @@ export default function HeroSlider() {
                       alt={`Slide ${index + 1}`}
                       fill
                       priority={index === 0}
-                      className="object-cover object-top"
+                      className="object-contain object-center"
                       sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 100vw"
                     />
                   </CardContent>
