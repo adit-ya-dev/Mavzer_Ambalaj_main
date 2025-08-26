@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState, useEffect } from "react";
 
@@ -63,12 +62,32 @@ export default function ContactFormOnly() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log("Form submitted:", formData);
-      setFormData({ name: "", email: "", phone: "", message: "" });
-      setIsSubmitted(true);
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+
+        const result = await response.json();
+        
+        if (result.success) {
+          console.log("Form submitted successfully:", formData);
+          setFormData({ name: "", email: "", phone: "", message: "" });
+          setIsSubmitted(true);
+        } else {
+          console.error("Form submission failed:", result.error);
+          // You can add error handling here if needed
+        }
+      } catch (error) {
+        console.error("Network error:", error);
+        // You can add error handling here if needed
+      }
     }
   };
 
