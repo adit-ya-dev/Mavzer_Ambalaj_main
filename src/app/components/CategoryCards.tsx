@@ -193,7 +193,7 @@ const CategoryCards: React.FC<CategoryCardsProps> = ({
                   aria-label={`Select ${category.name} category`}
                 >
                   <div className="flex flex-col items-center space-y-none">
-                    <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-24 lg:h-24 xl:w-38 xl:h-38 bg-gray-200 rounded-md overflow-hidden">
+                    <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-24 lg:h-24 xl:w-38 xl:h-38 bg-gray-200 overflow-hidden">
                       <img
                         src={category.image}
                         alt={category.name}
@@ -255,7 +255,7 @@ const CategoryCards: React.FC<CategoryCardsProps> = ({
                     }}
                   >
                     <Link href={item.link} className="block h-full">
-                      <div className="bg-gray-50 rounded-xl h-full flex flex-col border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow">
+                      <div className="bg-gray-50 h-full flex flex-col border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow">
                         <div className="relative w-full aspect-[4/3] bg-gray-200">
                           <img
                             src={item.image}

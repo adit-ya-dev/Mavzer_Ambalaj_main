@@ -9,17 +9,17 @@ const HeroSlider = () => {
   const slides = [
     {
       id: 1,
-      image: '/slider1.jpg',
+      image: '/slider1.png',
       alt: 'Stick Şeker - Mavzer Ambalaj'
     },
     {
       id: 2,
-      image: '/slider2.jpg', 
+      image: '/slider2.png', 
       alt: 'Islak Mendil - Mavzer Ambalaj'
     },
     {
       id: 3,
-      image: '/slider3.jpg',
+      image: '/slider3.png',
       alt: 'Ankara\'nın En Büyük Ambalaj Üreticisi'
     }
   ];
@@ -65,8 +65,44 @@ const HeroSlider = () => {
     setTimeout(() => setIsTransitioning(false), 500);
   };
 
+  // Get appropriate background styles for each slide
+  const getBackgroundStyles = (slideIndex: number) => {
+    const baseStyles = {
+      backgroundImage: `url(${slides[slideIndex].image})`,
+      backgroundRepeat: 'no-repeat'
+    };
+
+    // Customize positioning and sizing for each slide based on content
+    switch (slideIndex) {
+      case 0: // Stick Şeker slide - horizontal layout
+        return {
+          ...baseStyles,
+          backgroundSize: 'contain',
+          backgroundPosition: 'center center'
+        };
+      case 1: // Islak Mendil slide - horizontal layout
+        return {
+          ...baseStyles,
+          backgroundSize: 'contain',
+          backgroundPosition: 'center center'
+        };
+      case 2: // Ankara facility slide - building photo
+        return {
+          ...baseStyles,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center center'
+        };
+      default:
+        return {
+          ...baseStyles,
+          backgroundSize: 'contain',
+          backgroundPosition: 'center center'
+        };
+    }
+  };
+
   return (
-    <div className="relative w-full max-w-7xl mx-auto h-[200px] sm:h-[250px] md:h-[320px] lg:h-[380px] xl:h-[420px] overflow-hidden bg-gray-100 shadow-lg rounded-lg">
+    <div className="relative w-full max-w-7xl mx-auto h-[200px] sm:h-[250px] md:h-[320px] lg:h-[380px] xl:h-[420px] overflow-hidden bg-gradient-to-br from-blue-50 to-blue-100 shadow-lg rounded-lg -mt-8">
       {/* Slides Container */}
       <div className="relative w-full h-full">
         {slides.map((slide, index) => (
@@ -81,15 +117,11 @@ const HeroSlider = () => {
             }`}
           >
             <div 
-              className="w-full h-full bg-cover bg-no-repeat"
-              style={{
-                backgroundImage: `url(${slide.image})`,
-                backgroundPosition: 'center bottom',
-                backgroundSize: 'cover'
-              }}
+              className="w-full h-full"
+              style={getBackgroundStyles(index)}
             >
-              {/* Gradient overlay for better text readability */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20"></div>
+              {/* Subtle overlay for better UI element visibility */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none"></div>
             </div>
           </div>
         ))}
@@ -145,9 +177,7 @@ const HeroSlider = () => {
       </div>
 
       {/* Slide counter */}
-      <div className="absolute top-3 right-3 bg-black/50 text-white px-2 py-1 rounded-full text-xs font-medium z-10">
-        {currentSlide + 1} / {slides.length}
-      </div>
+      
     </div>
   );
 };
