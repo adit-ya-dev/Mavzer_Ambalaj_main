@@ -219,6 +219,23 @@ const CategoryCards: React.FC<CategoryCardsProps> = ({
             </div>
           </div>
         </div>
+
+        {/* Category heading and description moved here - under category cards */}
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="mt-8 text-center"
+          >
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              {categories.find(cat => cat.id === activeCategory)?.name}
+            </h2>
+            <p className="text-gray-600 mb-6">
+              {categoryDescriptions[activeCategory]}
+            </p>
+          </motion.div>
+        </div>
       </div>
 
       <div className="bg-white py-6">
@@ -266,19 +283,13 @@ const CategoryCards: React.FC<CategoryCardsProps> = ({
               </AnimatePresence>
             </div>
             
+            {/* Button stays here at the bottom after product grid */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
               className="mt-8 text-center"
             >
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                {categories.find(cat => cat.id === activeCategory)?.name}
-              </h2>
-              <p className="text-gray-600 mb-6">
-                {categoryDescriptions[activeCategory]}
-              </p>
-              
               <Link href={categoryLink}>
                 <button
                   className="px-6 py-3 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transition-colors"

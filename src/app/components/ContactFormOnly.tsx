@@ -15,6 +15,7 @@ export default function ContactFormOnly() {
     message: ""
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const validateForm = () => {
     let isValid = true;
@@ -62,32 +63,46 @@ export default function ContactFormOnly() {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (validateForm()) {
-      try {
-        const response = await fetch('/api/contact', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-        });
+    
+    if (!validateForm()) {
+      return;
+    }
 
-        const result = await response.json();
-        
-        if (result.success) {
-          console.log("Form submitted successfully:", formData);
-          setFormData({ name: "", email: "", phone: "", message: "" });
-          setIsSubmitted(true);
-        } else {
-          console.error("Form submission failed:", result.error);
-          // You can add error handling here if needed
-        }
-      } catch (error) {
-        console.error("Network error:", error);
-        // You can add error handling here if needed
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          // Add timestamp for tracking
+          timestamp: new Date().toISOString(),
+          // Add your email as recipient
+          recipient: 'aditsingh8077@gmail.com'
+        }),
+      });
+
+      const result = await response.json();
+      
+      if (response.ok && result.success) {
+        console.log("Form submitted successfully:", formData);
+        setFormData({ name: "", email: "", phone: "", message: "" });
+        setIsSubmitted(true);
+      } else {
+        console.error("Form submission failed:", result.error || 'Unknown error');
+        // You can add error handling UI here if needed
+        alert("Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin.");
       }
+    } catch (error) {
+      console.error("Network error:", error);
+      alert("Ağ hatası. Lütfen internet bağlantınızı kontrol edin ve tekrar deneyin.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -123,9 +138,16 @@ export default function ContactFormOnly() {
                 </div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form 
+                onSubmit={handleSubmit} 
+                className="space-y-4"
+                method="POST"
+                action="/api/contact"
+                noValidate
+              >
                 {/* Name Field */}
                 <div className="relative">
+                  <label htmlFor="name" className="sr-only">Ad Soyad</label>
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -133,19 +155,29 @@ export default function ContactFormOnly() {
                   </div>
                   <input
                     type="text"
+                    id="name"
                     name="name"
                     placeholder="Ad Soyad"
                     value={formData.name}
                     onChange={handleInputChange}
                     className={`w-full pl-10 pr-4 py-3 border ${errors.name ? "border-red-500" : "border-gray-300"} rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 placeholder-gray-400`}
                     required
+                    minLength={2}
+                    maxLength={100}
+                    aria-describedby={errors.name ? "name-error" : undefined}
+                    disabled={isSubmitting}
                   />
-                  {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+                  {errors.name && (
+                    <p id="name-error" className="text-red-500 text-sm mt-1" role="alert">
+                      {errors.name}
+                    </p>
+                  )}
                 </div>
 
                 {/* Email and Phone Row */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="relative">
+                    <label htmlFor="email" className="sr-only">E-posta Adresi</label>
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                       <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -153,16 +185,25 @@ export default function ContactFormOnly() {
                     </div>
                     <input
                       type="email"
+                      id="email"
                       name="email"
                       placeholder="E-posta Adresi"
                       value={formData.email}
                       onChange={handleInputChange}
                       className={`w-full pl-10 pr-4 py-3 border ${errors.email ? "border-red-500" : "border-gray-300"} rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 placeholder-gray-400`}
                       required
+                      maxLength={255}
+                      aria-describedby={errors.email ? "email-error" : undefined}
+                      disabled={isSubmitting}
                     />
-                    {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+                    {errors.email && (
+                      <p id="email-error" className="text-red-500 text-sm mt-1" role="alert">
+                        {errors.email}
+                      </p>
+                    )}
                   </div>
                   <div className="relative">
+                    <label htmlFor="phone" className="sr-only">Telefon Numarası</label>
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                       <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -170,47 +211,91 @@ export default function ContactFormOnly() {
                     </div>
                     <input
                       type="tel"
+                      id="phone"
                       name="phone"
                       placeholder="Telefon Numarası"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className={`w-full pl-10 pr-4 py-3 border ${errors.phone ? "border-red-500" : "border-gray-300"} rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 placeholder-gray-400`}
+                      className={`w-full pl-10 pr-4 py-3 border ${errors.phone ? "border-red-500" : "border-red-300"} rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 placeholder-gray-400`}
                       required
+                      maxLength={20}
+                      aria-describedby={errors.phone ? "phone-error" : undefined}
+                      disabled={isSubmitting}
                     />
-                    {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
+                    {errors.phone && (
+                      <p id="phone-error" className="text-red-500 text-sm mt-1" role="alert">
+                        {errors.phone}
+                      </p>
+                    )}
                   </div>
                 </div>
 
                 {/* Message Field */}
                 <div className="relative">
+                  <label htmlFor="message" className="sr-only">Konu ve Mesajınız</label>
                   <div className="absolute top-3 left-0 pl-3 flex pointer-events-none">
                     <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
                     </svg>
                   </div>
                   <textarea
+                    id="message"
                     name="message"
                     placeholder="Konu ve Mesajınız"
                     value={formData.message}
                     onChange={handleInputChange}
-                    rows={3}
+                    rows={4}
                     className={`w-full pl-10 pr-4 py-3 border ${errors.message ? "border-red-500" : "border-gray-300"} rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 placeholder-gray-400 resize-none`}
                     required
+                    minLength={10}
+                    maxLength={1000}
+                    aria-describedby={errors.message ? "message-error" : undefined}
+                    disabled={isSubmitting}
                   />
-                  {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
+                  {errors.message && (
+                    <p id="message-error" className="text-red-500 text-sm mt-1" role="alert">
+                      {errors.message}
+                    </p>
+                  )}
                 </div>
+
+                {/* Hidden honeypot field for spam protection */}
+                <input
+                  type="text"
+                  name="website"
+                  style={{ display: 'none' }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
 
                 {/* Submit Button */}
                 <div className="flex justify-center pt-4">
                   <button
                     type="submit"
-                    className="flex items-center gap-2 px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-200"
+                    className={`flex items-center gap-2 px-8 py-3 font-semibold rounded-lg transition-all duration-200 ${
+                      isSubmitting 
+                        ? 'bg-gray-400 text-gray-700 cursor-not-allowed' 
+                        : 'bg-blue-600 text-white hover:bg-blue-700'
+                    }`}
                     aria-label="Mesaj Gönder"
+                    disabled={isSubmitting}
                   >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Mesaj Gönder
+                    {isSubmitting ? (
+                      <>
+                        <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
+                        </svg>
+                        Gönderiliyor...
+                      </>
+                    ) : (
+                      <>
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                        </svg>
+                        Mesaj Gönder
+                      </>
+                    )}
                   </button>
                 </div>
               </form>
