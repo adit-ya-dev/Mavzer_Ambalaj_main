@@ -167,7 +167,7 @@ const CategoryCards: React.FC<CategoryCardsProps> = ({
 
   return (
     <>
-      <div 
+<div 
         id="category-cards" 
         className="category-cards bg-white -mt-4 sm:-mt-12 md:-mt-8 pt-1 md:pt-12 lg:pt-4 relative z-10"  
         data-section="category-cards"
@@ -178,12 +178,12 @@ const CategoryCards: React.FC<CategoryCardsProps> = ({
         
         <div className="container mx-auto px-4">
           <div className="flex justify-center">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 sm:gap-8 md:gap-12 lg:gap-4 max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 sm:gap-6 md:gap-12 lg:gap-6 max-w-auto mx-auto px-2 sm:px-2 md:px-6 lg:px-0">
               {categories.map((category) => (
                 <motion.button
                   key={category.id}
                   onClick={() => handleCategoryNavigation(category.id)}
-                  className={`relative p-none bg-white rounded-none shadow-sm border-2 ${
+                  className={`relative p-none bg-white rounded-0 shadow-sm border-2 ${
                     activeCategory === category.id
                       ? 'border-orange-500 bg-orange-100'
                       : 'border-gray-200 hover:border-orange-300 hover:bg-orange-50'
@@ -193,7 +193,9 @@ const CategoryCards: React.FC<CategoryCardsProps> = ({
                   aria-label={`Select ${category.name} category`}
                 >
                   <div className="flex flex-col items-center space-y-none">
-                    <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-24 lg:h-24 xl:w-38 xl:h-38 bg-gray-200 overflow-hidden">
+                   <div className="relative w-24 h-24 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-36  lg:h-36 xl:w-48 xl:h-48 bg-gray-200 overflow-hidden">
+
+
                       <img
                         src={category.image}
                         alt={category.name}
@@ -219,6 +221,7 @@ const CategoryCards: React.FC<CategoryCardsProps> = ({
             </div>
           </div>
         </div>
+      </div>
 
         {/* Category heading and description moved here - under category cards */}
         <div className="container mx-auto px-4">
@@ -236,7 +239,6 @@ const CategoryCards: React.FC<CategoryCardsProps> = ({
             </p>
           </motion.div>
         </div>
-      </div>
 
       <div className="bg-white py-6">
         <div className="container mx-auto px-4">
