@@ -57,7 +57,7 @@ export default function KurumsalPage() {
 <div className="my-12">
   <div className="relative rounded-xl overflow-hidden shadow-2xl aspect-[18/5] max-h-[320px]">
     <Image
-      src="/slider3.jpg"
+      src="/slider3.png"
       alt="Mavzer Ambalaj Tesisleri"
       width={1080}
       height={300}
