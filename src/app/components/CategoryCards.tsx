@@ -43,7 +43,7 @@ const CategoryCards: React.FC<CategoryCardsProps> = ({
         if (element) {
           element.scrollIntoView({ behavior: 'smooth', block: 'start' });
         } else {
-          window.scrollTo({ top: 600, behavior: 'smooth' });
+          window.scrollTo({ top: 9000, behavior: 'smooth' });
         }
       }, 100);
     } else {
@@ -126,9 +126,23 @@ const CategoryCards: React.FC<CategoryCardsProps> = ({
         className="category-cards bg-white -mt-4 sm:-mt-12 md:-mt-8 pt-1 md:pt-12 lg:pt-4 relative z-10"
         data-section="category-cards"
       >
-        <h2 className="text-center text-1xl md:text-2xl font-bold mb-4">
-          Sektörünüzü seçerek ihtiyacınız olabilecek ürünleri keşfedin
-        </h2>
+
+      <div className="container mx-auto px-4">
+        <div className="flex justify-center">
+          <div className="max-w-auto mx-auto px-2 sm:px-2 md:px-6 lg:px-0">
+            <div className="text-center mb-4">
+              <div className="relative w-full h-24 sm:h-24 md:h-32 lg:h-36 xl:h-40 bg-gray-100 overflow-hidden  shadow-sm">
+                <img
+                  src="/banner.png"
+                  alt="Söyle Kazan - Hızlı Teslimat'la 2 Sipariş Ver"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
         <div className="container mx-auto px-4">
           <div className="flex justify-center">
@@ -193,7 +207,7 @@ const CategoryCards: React.FC<CategoryCardsProps> = ({
       <section className="bg-white py-6">
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
               <AnimatePresence mode="wait">
                 {filteredItems.map((item, index) => (
                   <motion.div
