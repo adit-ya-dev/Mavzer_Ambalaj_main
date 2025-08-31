@@ -127,22 +127,26 @@ const CategoryCards: React.FC<CategoryCardsProps> = ({
         data-section="category-cards"
       >
 
-      <div className="container mx-auto px-4">
-        <div className="flex justify-center">
-          <div className="max-w-auto mx-auto px-2 sm:px-2 md:px-6 lg:px-0">
-            <div className="text-center mb-4">
-              <div className="relative w-full h-24 sm:h-24 md:h-32 lg:h-36 xl:h-40 bg-gray-100 overflow-hidden  shadow-sm">
+<div className="text-center mb-4">
+              <button 
+                onClick={() => {
+                  const element = document.getElementById('category-cards');
+                  if (element) {
+                    const yOffset = -80; // Adjust this value to control how much above the section to scroll
+                    const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                  }
+                }}
+                className="relative w-full max-w-4xl h-24 sm:h-24 md:h-32 lg:h-36 xl:h-40 bg-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer"
+                aria-label="Scroll to categories"
+              >
                 <img
                   src="/banner.png"
                   alt="Söyle Kazan - Hızlı Teslimat'la 2 Sipariş Ver"
                   className="w-full h-full object-contain"
                 />
-              </div>
+              </button>
             </div>
-          </div>
-        </div>
-      </div>
-
 
         <div className="container mx-auto px-4">
           <div className="flex justify-center">
