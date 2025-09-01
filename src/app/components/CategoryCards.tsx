@@ -65,47 +65,36 @@ const CategoryCards: React.FC<CategoryCardsProps> = ({
     { id: 'r2', category: 'restaurant', name: 'Toz Şeker Ambalajı', link: '/restaurant', image: '/restaurant_cafe_hotel/3tozşeker.png' },
     { id: 'r3', category: 'restaurant', name: 'Çorba Kaseleri', link: '/restaurant', image: '/restaurant_cafe_hotel/4çorba_kase.png' },
     { id: 'r4', category: 'restaurant', name: 'Kağıt Çanta', link: '/restaurant', image: '/restaurant_cafe_hotel/5kagıt_canta.png' },
-    { id: 'r5', category: 'restaurant', name: 'Ambalaj Kağıdı', link: '/restaurant', image: '/restaurant_cafe_hotel/6kese_kağıdı.png' },
-    { id: 'r6', category: 'restaurant', name: 'Naylon Poşet', link: '/restaurant', image: '/restaurant_cafe_hotel/7naylon_poşet.png' },
+   
     { id: 'c1', category: 'cafe', name: 'Pipet Ambalajı', link: '/cafe', image: '/restaurant_cafe_hotel/8pipet_ambalaj.png' },
     { id: 'c2', category: 'cafe', name: 'Peçete', link: '/cafe', image: '/restaurant_cafe_hotel/10peçete.png' },
     { id: 'c3', category: 'cafe', name: 'Mukavva Kutu', link: '/cafe', image: '/restaurant_cafe_hotel/11mukavva.png' },
     { id: 'c4', category: 'cafe', name: 'Karton Kutular', link: '/cafe', image: '/restaurant_cafe_hotel/carton_kutular.jpg' },
-    { id: 'c5', category: 'cafe', name: 'Şeker Ambalajı', link: '/cafe', image: '/restaurant_cafe_hotel/3tozşeker.png' },
-    { id: 'c6', category: 'cafe', name: 'Islak Mendil', link: '/cafe', image: '/restaurant_cafe_hotel/ıslakmendil.png' },
+    
     { id: 'h1', category: 'hotel', name: 'Otel Islak Mendilleri', link: '/hotel', image: '/restaurant_cafe_hotel/ıslakmendil.png' },
     { id: 'h2', category: 'hotel', name: 'Oda Servisi Çanta', link: '/hotel', image: '/restaurant_cafe_hotel/5kagıt_canta.png' },
     { id: 'h3', category: 'hotel', name: 'Minibar Şekerleri', link: '/hotel', image: '/restaurant_cafe_hotel/3tozşeker.png' },
     { id: 'h4', category: 'hotel', name: 'Oda Peçeteleri', link: '/hotel', image: '/restaurant_cafe_hotel/10peçete.png' },
-    { id: 'h5', category: 'hotel', name: 'Servis Kutuları', link: '/hotel', image: '/restaurant_cafe_hotel/11mukavva.png' },
-    { id: 'h6', category: 'hotel', name: 'Çorba Servisi', link: '/hotel', image: '/restaurant_cafe_hotel/4çorba_kase.png' },
+    
     { id: 'o1', category: 'official', name: 'Resmi Islak Mendil', link: '/institution', image: '/restaurant_cafe_hotel/ıslakmendil.png' },
     { id: 'o2', category: 'official', name: 'Kurumsal Çantalar', link: '/institution', image: '/restaurant_cafe_hotel/5kagıt_canta.png' },
     { id: 'o3', category: 'official', name: 'Ofis Şekerleri', link: '/institution', image: '/restaurant_cafe_hotel/3tozşeker.png' },
     { id: 'o4', category: 'official', name: 'Resmi Peçeteler', link: '/institution', image: '/restaurant_cafe_hotel/10peçete.png' },
-    { id: 'o5', category: 'official', name: 'Kurum Kutuları', link: '/institution', image: '/restaurant_cafe_hotel/11mukavva.png' },
-    { id: 'o6', category: 'official', name: 'Ofis Poşetleri', link: '/institution', image: '/restaurant_cafe_hotel/7naylon_poşet.png' },
+    
     { id: 'm1', category: 'medical', name: 'Tıbbi Ambalaj Kağıdı', link: '/medical', image: '/restaurant_cafe_hotel/6kese_kağıdı.png' },
     { id: 'm2', category: 'medical', name: 'Medikal Mukavva Kutu', link: '/medical', image: '/restaurant_cafe_hotel/11mukavva.png' },
     { id: 'm3', category: 'medical', name: 'Temizlik Ürünleri', link: '/medical', image: '/restaurant_cafe_hotel/15temizlikürün.png' },
     { id: 'm4', category: 'medical', name: 'Ürün Ambalajı', link: '/medical', image: '/restaurant_cafe_hotel/14ürünambalaj.png' },
-    { id: 'm5', category: 'medical', name: 'Tıbbi Poşetler', link: '/medical', image: '/restaurant_cafe_hotel/7naylon_poşet.png' },
-    { id: 'm6', category: 'medical', name: 'Steril Çanta', link: '/medical', image: '/restaurant_cafe_hotel/5kagıt_canta.png' },
+    
     { id: 'i1', category: 'industrial', name: 'Endüstriyel Ambalaj Kağıdı', link: '/industry', image: '/restaurant_cafe_hotel/6kese_kağıdı.png' },
     { id: 'i2', category: 'industrial', name: 'Sanayi Mukavva Kutu', link: '/industry', image: '/restaurant_cafe_hotel/11mukavva.png' },
     { id: 'i3', category: 'industrial', name: 'Endüstriyel Temizlik', link: '/industry', image: '/restaurant_cafe_hotel/15temizlikürün.png' },
     { id: 'i4', category: 'industrial', name: 'Sanayi Ürün Ambalajı', link: '/industry', image: '/restaurant_cafe_hotel/14ürünambalaj.png' },
-    { id: 'i5', category: 'industrial', name: 'İş Güvenliği Poşetler', link: '/industry', image: '/restaurant_cafe_hotel/7naylon_poşet.png' },
-    { id: 'i6', category: 'industrial', name: 'Endüstriyel Çantalar', link: '/industry', image: '/restaurant_cafe_hotel/5kagıt_canta.png' },
+    
   ];
 
   const categoryDescriptions: Record<string, string> = {
-    restaurant: 'Restoranlar için özel olarak tasarlanmış ambalaj çözümleri sunuyoruz. Islak mendillerden toz şeker ambalajlarına, kağıt çantalardan naylon poşetlere kadar, müşterilerinize kaliteli hizmet sunmanıza yardımcı oluyoruz.',
-    cafe: 'Kafeler için modern ve işlevsel ambalaj ürünleri ile markanızı ön plana çıkarın. Pipet ambalajlarından peçetelere ve mukavva kutulardan şeker ambalajlarına kadar her ihtiyacınızı karşılıyoruz.',
-    hotel: 'Oteller için profesyonel ambalaj çözümleri ile misafirlerinize konforlu bir deneyim sunun. Otel islak mendillerinden oda servisi çantalarına ve minibar şekerlerinden oda peçetelerine kadar her şeyi sağlıyoruz.',
-    official: 'Resmi kurumlar için güvenilir ve profesyonel ambalaj hizmetleri. Kurumsal çantalardan ofis şekerlerine ve resmi peçetelerden kurum kutularına kadar kurumsal kimliğinizi güçlendirin.',
-    medical: 'Medikal sektör için hijyenik ve dayanıklı ambalaj çözümleri. Tıbbi ambalaj kağıdından medikal mukavva kutularına ve temizlik ürünlerinden steril çantalara kadar sağlık hizmetlerinizi destekliyoruz.',
-    industrial: 'Endüstriyel ortamlar için sağlam ve işlevsel ambalaj ürünleri. Endüstriyel ambalaj kağıdından sanayi mukavva kutularına ve iş güvenliği poşetlerinden endüstriyel çantalara kadar operasyonlarınızı destekliyoruz.',
+   
   };
 
   const filteredItems = contentItems.filter(
@@ -127,7 +116,9 @@ const CategoryCards: React.FC<CategoryCardsProps> = ({
         data-section="category-cards"
       >
 
-<div className="text-center mb-4">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-center">
+            <div className="text-center mb-4">
               <button 
                 onClick={() => {
                   const element = document.getElementById('category-cards');
@@ -147,6 +138,8 @@ const CategoryCards: React.FC<CategoryCardsProps> = ({
                 />
               </button>
             </div>
+          </div>
+        </div>
 
         <div className="container mx-auto px-4">
           <div className="flex justify-center">
@@ -207,54 +200,59 @@ const CategoryCards: React.FC<CategoryCardsProps> = ({
         </motion.div>
       </section>
 
-      {/* Filtered Items Section */}
+      {/* Filtered Items Section - Now Centered */}
       <section className="bg-white py-6">
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-              <AnimatePresence mode="wait">
-                {filteredItems.map((item, index) => (
-                  <motion.div
-                    key={item.id}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.3, delay: index * 0.05 }}
-                  >
-                    <Link href={item.link} className="block h-full">
-                      <div className="bg-gray-50 h-full flex flex-col border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow">
-                        <div className="relative w-full aspect-[4/3] bg-gray-200">
-                          <img
-                            src={item.image}
-                            alt={item.name}
-                            className="w-full h-full object-cover"
-                            loading={index < 6 ? 'eager' : 'lazy'}
-                            onError={(e) => {
-                              const img = e.currentTarget;
-                              if (!img.dataset.error) {
-                                img.dataset.error = 'true';
-                                img.src = placeholderSVG;
-                                img.style.objectFit = 'contain';
-                                img.style.padding = '20px';
-                              }
-                            }}
-                          />
+            {/* Center the grid container */}
+            <div className="flex justify-center">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
+                <AnimatePresence mode="wait">
+                  {filteredItems.map((item, index) => (
+                    <motion.div
+                      key={item.id}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.9 }}
+                      transition={{ duration: 0.3, delay: index * 0.05 }}
+                      className="w-full max-w-[200px]" // Control max width of items
+                    >
+                      <Link href={item.link} className="block h-full">
+                        <div className="bg-gray-50 h-full flex flex-col border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow">
+                          <div className="relative w-full aspect-[4/3] bg-gray-200">
+                            <img
+                              src={item.image}
+                              alt={item.name}
+                              className="w-full h-full object-cover"
+                              loading={index < 6 ? 'eager' : 'lazy'}
+                              onError={(e) => {
+                                const img = e.currentTarget;
+                                if (!img.dataset.error) {
+                                  img.dataset.error = 'true';
+                                  img.src = placeholderSVG;
+                                  img.style.objectFit = 'contain';
+                                  img.style.padding = '20px';
+                                }
+                              }}
+                            />
+                          </div>
+                          <div className="p-4 flex flex-col items-center justify-center text-center">
+                            <h3 className="text-sm font-bold text-gray-800">{item.name}</h3>
+                          </div>
                         </div>
-                        <div className="p-4 flex flex-col items-center justify-center text-center">
-                          <h3 className="text-sm font-bold text-gray-800">{item.name}</h3>
-                        </div>
-                      </div>
-                    </Link>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </div>
             </div>
+            
             {/* View More Button */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="mt-13 text-center"
+              className="mt-8 text-center"
             >
               <Link href={categoryLink}>
                 <button
