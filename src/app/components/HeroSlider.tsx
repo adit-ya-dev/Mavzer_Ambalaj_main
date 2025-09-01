@@ -1,26 +1,31 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
 
 const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const isTransitioningRef = useRef(false);
+  const router = useRouter();
 
-  // Your slide images data
+  // Your slide images data with navigation links
   const slides = [
     {
       id: 1,
       image: '/slider1.png',
-      alt: 'Stick Şeker - Mavzer Ambalaj'
+      alt: 'Stick Şeker - Mavzer Ambalaj',
+      link: '/restaurant'
     },
     {
       id: 2,
       image: '/slider2.png', 
-      alt: 'Islak Mendil - Mavzer Ambalaj'
+      alt: 'Islak Mendil - Mavzer Ambalaj',
+      link: '/hotel'
     },
     {
       id: 3,
       image: '/slider3.png',
-      alt: 'Ankara\'nın En Büyük Ambalaj Üreticisi'
+      alt: 'Ankara\'nın En Büyük Ambalaj Üreticisi',
+      link: '/contact'
     }
   ];
 
@@ -56,6 +61,11 @@ const HeroSlider = () => {
     setIsTransitioning(true);
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
     setTimeout(() => setIsTransitioning(false), 500);
+  };
+
+  // Handle slide click navigation
+  const handleSlideClick = (link: string) => {
+    router.push(link);
   };
 
   const goToSlide = (index: number) => {
@@ -116,13 +126,19 @@ const HeroSlider = () => {
                   : 'opacity-0 scale-95 translate-x-full'
             }`}
           >
-            <div 
-              className="w-full h-full"
-              style={getBackgroundStyles(index)}
+            <button
+              onClick={() => handleSlideClick(slide.link)}
+              className="w-full h-full cursor-pointer hover:opacity-90 transition-opacity duration-300"
+              aria-label={`Navigate to ${slide.alt}`}
             >
-              {/* Subtle overlay for better UI element visibility */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none"></div>
-            </div>
+              <div 
+                className="w-full h-full"
+                style={getBackgroundStyles(index)}
+              >
+                {/* Subtle overlay for better UI element visibility */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none"></div>
+              </div>
+            </button>
           </div>
         ))}
       </div>
@@ -176,8 +192,12 @@ const HeroSlider = () => {
         />
       </div>
 
-      {/* Slide counter */}
-      
+      {/* Slide counter - Optional: uncomment if you want to show slide numbers */}
+      {/* 
+      <div className="absolute top-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm z-10">
+        {currentSlide + 1} / {slides.length}
+      </div>
+      */}
     </div>
   );
 };

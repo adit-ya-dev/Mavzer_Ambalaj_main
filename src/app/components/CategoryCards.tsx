@@ -137,7 +137,7 @@ const CategoryCards: React.FC<CategoryCardsProps> = ({
                     window.scrollTo({ top: y, behavior: 'smooth' });
                   }
                 }}
-                className="relative w-full max-w-4xl h-24 sm:h-24 md:h-32 lg:h-36 xl:h-40 bg-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer"
+                className="relative w-full max-w-7xl h-24 sm:h-24 md:h-32 lg:h-36 xl:h-40 bg-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer"
                 aria-label="Scroll to categories"
               >
                 <img
