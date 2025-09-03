@@ -127,7 +127,7 @@ const CategoryCards: React.FC<CategoryCardsProps> = React.memo(({
           </div>
         </div>
 
-        <div id="category-cards-cards" className="container mx-auto px-4">
+        <div id="category-cards-cards" className="container mx-auto px-4 mt-8 mb-16">
           <div className="flex justify-center">
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 max-w-auto mx-auto px-2 sm:px-2 md:px-6 lg:px-0">
               {categories.map((category) => (
