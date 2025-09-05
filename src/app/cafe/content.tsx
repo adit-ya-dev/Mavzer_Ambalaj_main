@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 export default function Content() {
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -113,16 +113,16 @@ export default function Content() {
     }, 100);
   };
 
-  const handleImageError = (e) => {
-    console.error('Image failed to load:', e.target.src);
-    e.target.style.display = 'none';
-    const svgContainer = e.target.nextElementSibling;
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    console.error('Image failed to load:', e.currentTarget.src);
+    e.currentTarget.style.display = 'none';
+    const svgContainer = e.currentTarget.nextElementSibling as HTMLElement;
     if (svgContainer) {
       svgContainer.style.display = 'block';
     }
   };
 
-  const openImageModal = (imageSrc) => {
+  const openImageModal = (imageSrc: string) => {
     setSelectedImage(imageSrc);
   };
 
