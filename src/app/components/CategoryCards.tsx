@@ -113,7 +113,7 @@ const CategoryCards: React.FC<CategoryCardsProps> = React.memo(({
         <div className="container mx-auto px-4">
           <div className="flex justify-center">
             <div className="max-w-auto mx-auto px-2 sm:px-2 md:px-6 lg:px-0">
-              <div className="text-center mb-4">
+              <div className="text-center mb-2">
                 <div className="relative w-full h-24 sm:h-24 md:h-32 lg:h-36 xl:h-40 bg-gray-100 overflow-hidden shadow-sm">
                   <img
                     src="/banner.png"
@@ -127,7 +127,7 @@ const CategoryCards: React.FC<CategoryCardsProps> = React.memo(({
           </div>
         </div>
 
-        <div id="category-cards-cards" className="container mx-auto px-4 mt-8 mb-16">
+        <div id="category-cards-cards" className="container mx-auto px-4 mt-2 mb-16">
           <div className="flex justify-center">
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 max-w-auto mx-auto px-2 sm:px-2 md:px-6 lg:px-0">
               {categories.map((category) => (
